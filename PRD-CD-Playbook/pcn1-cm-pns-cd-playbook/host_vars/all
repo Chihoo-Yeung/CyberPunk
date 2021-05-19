@@ -1,0 +1,31 @@
+[admin]
+10.5.16.14  hostname=pcn1adm001
+
+[gitlab]
+10.5.32.24  hostname=pcn1gitlab001
+
+[gitlab]
+10.5.32.25  hostname=pcn1harbor001
+
+[node]
+#10.5.64.13          hostname=ip-10-5-64-13.cn-north-1.compute.internal
+10.5.65.13          hostname=ip-10-5-65-13.cn-north-1.compute.internal
+10.5.64.14          hostname=ip-10-5-64-14.cn-north-1.compute.internal
+10.5.65.14          hostname=ip-10-5-65-13.cn-north-1.compute.internal
+10.5.64.15          hostname=ip-10-5-64-15.cn-north-1.compute.internal
+10.5.65.15          hostname=ip-10-5-65-15.cn-north-1.compute.internal
+10.5.64.16          hostname=ip-10-5-64-16.cn-north-1.compute.internal
+10.5.65.16          hostname=ip-10-5-65-16.cn-north-1.compute.internal
+10.5.64.17          hostname=ip-10-5-64-17.cn-north-1.compute.internal
+10.5.65.17          hostname=ip-10-5-65-17.cn-north-1.compute.internal
+10.5.64.20          hostname=ip-10-5-64-20.cn-north-1.compute.internal
+10.5.65.20          hostname=ip-10-5-65-13.cn-north-1.compute.internal
+10.5.64.21          hostname=ip-10-5-64-21.cn-north-1.compute.internal
+10.5.65.21          hostname=ip-10-5-65-21.cn-north-1.compute.internal
+10.5.128.24         hostname=ip-10-5-128-24.cn-north-1.compute.internal
+10.5.129.24         hostname=ip-10-5-129-24.cn-north-1.compute.internal
+10.5.128.25         hostname=ip-10-5-128-25.cn-north-1.compute.internal
+10.5.129.25         hostname=ip-10-5-129-25.cn-north-1.compute.internal
+10.5.128.29         hostname=ip-10-5-128-29.cn-north-1.compute.internal
+10.5.129.29         hostname=ip-10-5-129-29.cn-north-1.compute.internal
+

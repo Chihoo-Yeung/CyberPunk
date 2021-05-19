@@ -1,0 +1,147 @@
+ansible_user: 'spp_sys'
+ansible_password: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        37323765383233396233383034386363663736653062313530383565306665353536326134643935
+        3635326231646361363862646461346238346666333930390a366462346336356535643833653133
+        34313031396239373161363833356661376238336262633865396632306139656234663134376562
+        3661336364306234390a643162353838613461626630333363326261393837356662343433663465
+        6261
+
+
+
+ansible_become_pass: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        37323765383233396233383034386363663736653062313530383565306665353536326134643935
+        3635326231646361363862646461346238346666333930390a366462346336356535643833653133
+        34313031396239373161363833356661376238336262633865396632306139656234663134376562
+        3661336364306234390a643162353838613461626630333363326261393837356662343433663465
+        6261
+
+#cm var
+
+#-------------------tasks vars------------------------
+TempDir: "/tmp/cnm-prd-{{ FarmId }}"
+
+#-------------------configmap vars------------------------
+Version: "1.3.15"
+ServerId: "06"
+#ZkServerHost: "10.5.64.13"   #eks node front-a01
+#ZkServerPort: "4181"
+ZkServerHost1: "10.5.32.13"
+ZkServerHost2: "10.5.33.13"
+ZkServerHost3: "10.5.32.14"
+ZkServerPort: "4181"
+ZkServerUrl: "{{ZkServerHost1}}:{{ZkServerPort}},{{ZkServerHost2}}:{{ZkServerPort}},{{ZkServerHost3}}:{{ZkServerPort}}"
+
+AwsSecretKey: "Zmsa5ewCY3SaG5KxA7QDG5vXSEtg6PVsp8hUuC3e"
+AwsAccessKey: "AKIAOMULT3LTXW5G7GAQ"
+EndPoint: "ec2.cn-north-1.amazonaws.com.cn"
+
+####CAR configure
+RegionCarHosts1: "10.5.129.36"
+RegionCarHosts2: "10.5.128.37"
+RegionCarHosts3: "10.5.129.37"
+RegionCarPorts: "11160"
+RegionCarHosts: "{{RegionCarHosts1}},{{RegionCarHosts2}},{{RegionCarHosts3}}"
+
+####CAM configure
+RegionCamHosts1001: "10.5.128.11"
+RegionCamHosts1002: "10.5.129.11"
+RegionCamHosts1003: "10.5.128.12"
+RegionCamHosts1004: "10.5.129.12"
+RegionCamHosts1005: "10.5.128.13"
+RegionCamHosts1006: "10.5.129.13"
+
+RegionCamHosts1201: "10.5.128.16"
+RegionCamHosts1202: "10.5.129.16"
+RegionCamHosts1203: "10.5.128.17"
+RegionCamHosts1204: "10.5.129.17"
+RegionCamHosts1205: "10.5.128.18"
+RegionCamHosts1206: "10.5.129.18"
+
+RegionCamHosts1401: "10.5.128.21"
+RegionCamHosts1402: "10.5.129.21"
+RegionCamHosts1403: "10.5.128.22"
+RegionCamHosts1404: "10.5.129.22"
+RegionCamHosts1405: "10.5.128.23"
+RegionCamHosts1406: "10.5.129.23"
+
+RegionCamHosts1601: "10.5.128.26"
+RegionCamHosts1602: "10.5.129.26"
+RegionCamHosts1603: "10.5.128.27"
+RegionCamHosts1604: "10.5.129.27"
+RegionCamHosts1605: "10.5.128.28"
+RegionCamHosts1606: "10.5.129.28"
+
+RegionCamHosts1801: "10.5.128.31"
+RegionCamHosts1802: "10.5.129.31"
+RegionCamHosts1803: "10.5.128.32"
+RegionCamHosts1804: "10.5.129.32"
+RegionCamHosts1805: "10.5.128.33"
+RegionCamHosts1806: "10.5.129.33"
+
+RegionCamPorts: "11160"
+
+RegionCamHosts10: "{{RegionCamHosts1001}},{{RegionCamHosts1002}},{{RegionCamHosts1003}},{{RegionCamHosts1004}},{{RegionCamHosts1005}},{{RegionCamHosts1006}}"
+RegionCamHosts11: "{{RegionCamHosts1001}},{{RegionCamHosts1002}},{{RegionCamHosts1003}},{{RegionCamHosts1004}},{{RegionCamHosts1005}},{{RegionCamHosts1006}}"
+RegionCamHosts12: "{{RegionCamHosts1201}},{{RegionCamHosts1202}},{{RegionCamHosts1203}},{{RegionCamHosts1204}},{{RegionCamHosts1205}},{{RegionCamHosts1206}}"
+RegionCamHosts13: "{{RegionCamHosts1201}},{{RegionCamHosts1202}},{{RegionCamHosts1203}},{{RegionCamHosts1204}},{{RegionCamHosts1205}},{{RegionCamHosts1206}}"
+RegionCamHosts14: "{{RegionCamHosts1401}},{{RegionCamHosts1402}},{{RegionCamHosts1403}},{{RegionCamHosts1404}},{{RegionCamHosts1405}},{{RegionCamHosts1406}}"
+RegionCamHosts15: "{{RegionCamHosts1401}},{{RegionCamHosts1402}},{{RegionCamHosts1403}},{{RegionCamHosts1404}},{{RegionCamHosts1405}},{{RegionCamHosts1406}}"
+RegionCamHosts16: "{{RegionCamHosts1601}},{{RegionCamHosts1602}},{{RegionCamHosts1603}},{{RegionCamHosts1604}},{{RegionCamHosts1605}},{{RegionCamHosts1606}}"
+RegionCamHosts17: "{{RegionCamHosts1601}},{{RegionCamHosts1602}},{{RegionCamHosts1603}},{{RegionCamHosts1604}},{{RegionCamHosts1605}},{{RegionCamHosts1606}}"
+RegionCamHosts18: "{{RegionCamHosts1801}},{{RegionCamHosts1802}},{{RegionCamHosts1803}},{{RegionCamHosts1804}},{{RegionCamHosts1805}},{{RegionCamHosts1806}}"
+RegionCamHosts19: "{{RegionCamHosts1801}},{{RegionCamHosts1802}},{{RegionCamHosts1803}},{{RegionCamHosts1804}},{{RegionCamHosts1805}},{{RegionCamHosts1806}}"
+
+
+####Redis configure
+RedisHost10: "pcn1ecr10.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost11: "pcn1ecr11.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost12: "pcn1ecr12.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost13: "pcn1ecr13.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost14: "pcn1ecr14.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost15: "pcn1ecr15.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost16: "pcn1ecr16.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost17: "pcn1ecr17.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost18: "pcn1ecr18.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+RedisHost19: "pcn1ecr19.5yxsyk.ng.0001.cnn1.cache.amazonaws.com.cn"
+
+RedisPort: "8379"
+
+ConsistencyLevel: "QUORUM"
+#ConsistencyLevel: "ONE"
+
+
+#----------------statefulset vars--------------------
+#Change
+
+ProjectName: "spp"
+AppName: "cnm"
+ServiceName: "pns"
+Harbor: "reg.spp.com"
+ImageVersion: "v1.3.47.4"
+Replicas: "27"
+ImagePullSecrets: "spp-reg-key"
+NodeSelectorLabelKey: "Tier"
+NodeSelectorLabelValue: "frontend"
+XMX: "8G"
+XMS: "8G"
+RequestsMemory: "8Gi"
+LimitsMemory: "10Gi"
+ZkUrl: "10.5.32.13:4181"   #10.5.64.13:4181  for test
+
+#No change
+Namespace: "{{ProjectName}}-{{AppName}}"
+HeadlessName: "{{AppName}}-{{ServiceName}}"
+ImageName: "{{ProjectName}}-{{AppName}}-{{ServiceName}}"
+ImagePath: "{{Harbor}}/{{AppName}}/{{ImageName}}:{{ImageVersion}}"
+
+
+
+#-----------------nodeport service vars------------------
+
+
+
+#-----------------headless service vars------------------
+
+

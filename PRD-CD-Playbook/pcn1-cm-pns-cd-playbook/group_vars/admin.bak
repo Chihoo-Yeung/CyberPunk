@@ -1,0 +1,97 @@
+ansible_user: 'spp_sys'
+ansible_password: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        37323765383233396233383034386363663736653062313530383565306665353536326134643935
+        3635326231646361363862646461346238346666333930390a366462346336356535643833653133
+        34313031396239373161363833356661376238336262633865396632306139656234663134376562
+        3661336364306234390a643162353838613461626630333363326261393837356662343433663465
+        6261
+
+
+
+ansible_become_pass: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        37323765383233396233383034386363663736653062313530383565306665353536326134643935
+        3635326231646361363862646461346238346666333930390a366462346336356535643833653133
+        34313031396239373161363833356661376238336262633865396632306139656234663134376562
+        3661336364306234390a643162353838613461626630333363326261393837356662343433663465
+        6261
+
+#cm var
+
+#-------------------tasks vars------------------------
+TempDir: "/tmp/cnm-new"
+
+#-------------------configmap vars------------------------
+Version: "1.3.15"
+ServerId: "06"
+ZkServerHost: "10.5.64.13"
+ZkServerPort: "4181"
+AwsSecretKey: "Zmsa5ewCY3SaG5KxA7QDG5vXSEtg6PVsp8hUuC3e"
+AwsAccessKey: "AKIAOMULT3LTXW5G7GAQ"
+EndPoint: "ec2.cn-north-1.amazonaws.com.cn"
+
+RegionCarHosts1: "car-01-0.cassandra.spp-component.svc.cluster.local"
+RegionCarHosts2: "car-01-1.cassandra.spp-component.svc.cluster.local"
+RegionCarHosts3: "car-01-2.cassandra.spp-component.svc.cluster.local"
+
+
+RegionCamHosts1001: "cam-01-rack3-0.cassandra.spp-component.svc.cluster.local"
+RegionCamHosts1002: "cam-01-rack3-1.cassandra.spp-component.svc.cluster.local"
+RegionCamHosts1003: "cam-01-rack3-2.cassandra.spp-component.svc.cluster.local"
+
+RegionCamHosts1103: "cam-02-rack3-0.cassandra.spp-component.svc.cluster.local"
+RegionCamHosts1102: "cam-02-rack3-1.cassandra.spp-component.svc.cluster.local"
+RegionCamHosts1101: "cam-02-rack3-2.cassandra.spp-component.svc.cluster.local"
+
+RegionCarPorts: "9160"
+RegionCamPorts: "9160"
+
+RedisHost: "redis-0.redis-svc.spp-component.svc.cluster.local"
+RedisPort: "6379"
+
+ConsistencyLevel: "QUORUM"
+#ConsistencyLevel: "ONE"
+
+ZkServerUrl: "{{ZkServerHost}}:{{ZkServerPort}}"
+RegionCarHosts: "{{RegionCarHosts1}},{{RegionCarHosts2}},{{RegionCarHosts3}}"
+RegionCamHosts10: "{{RegionCamHosts1001}},{{RegionCamHosts1002}},{{RegionCamHosts1003}}"
+RegionCamHosts11: "{{RegionCamHosts1101}},{{RegionCamHosts1102}},{{RegionCamHosts1103}}"
+
+#RegionCamHosts: "{{RegionCamHosts10}}"
+
+#----------------statefulset vars--------------------
+#Change
+
+ProjectName: "spp"
+AppName: "cnm"
+ServiceName: "pns"
+Harbor: "reg.spp.com"
+ImageVersion: "v1.3.47.2"
+Replicas: "2"
+ImagePullSecrets: "spp-reg-key"
+NodeSelectorLabels:
+  - {NodeSelectorLabelKey: Tier, NodeSelectorLabelValue: frontend}
+XMX: "3G"
+XMS: "3G"
+RequestsMemory: "3G"
+#RequestsCpu: ""
+LimitsMemory: "3G"
+#LimitsCpu: ""
+ZkUrl: "10.5.64.13:4181"   #10.5.64.13:4181
+
+#No change
+Namespace: "{{ProjectName}}-{{AppName}}"
+HeadlessName: "{{AppName}}-{{ServiceName}}"
+ImageName: "{{ProjectName}}-{{AppName}}-{{ServiceName}}"
+ImagePath: "{{Harbor}}/{{AppName}}/{{ImageName}}:{{ImageVersion}}"
+
+                
+
+#-----------------nodeport service vars------------------
+
+
+
+#-----------------headless service vars------------------
+
+

@@ -1,0 +1,24 @@
+- name: RQM Check workdir | check workdir
+  command: ls /spp/{{ AppName }}
+  register: result
+  changed_when: false
+  ignore_errors: true
+
+- name: RQM Create Workdir |  create workdir
+  file: path=/spp/{{ AppName }}  state=directory mode=0644
+  when: result
+
+- name: RQM Config ConfigMap |  copy rqmWithRMQM.conf
+  template: src=rqm-pns-configmap.yml.j2  dest=/spp/{{ AppName }}/rqm-pns-configmap.yml
+
+- name: RQM Config  Deployment |  copy rqm-pns-stat.yml
+  template: src=rqm-pns-stat.yml.j2  dest=/spp/{{ AppName }}/rqm-pns-stat.yml
+
+- name: RQM Config  Service |  copy rqm-pns-headless.yml
+  template: src=rqm-pns-headless.yml.j2  dest=/spp/{{ AppName }}/rqm-pns-headless.yml
+
+- name: RQM Config  Service |  copy rqm-pns-service.yml
+  template: src=rqm-pns-service.yml.j2  dest=/spp/{{ AppName }}/rqm-pns-service.yml
+
+- name: RQM Apply  File |  apply all  yaml.file
+  command: kubectl apply -f /spp/{{ AppName }}/

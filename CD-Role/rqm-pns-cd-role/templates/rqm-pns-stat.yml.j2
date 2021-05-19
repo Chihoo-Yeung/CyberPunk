@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ StatefulSetName }}
+  namespace: {{ Namespace }}
+  labels:
+    spp-app: spp-{{ AppName }}
+spec:
+  serviceName: {{ HeadlessName }}
+  replicas: {{ Replicas }}
+  selector:
+    matchLabels:
+      spp-app: spp-{{ AppName }}
+  template:
+    metadata:
+      labels:
+        spp-app: spp-{{ AppName }}
+    spec:
+      imagePullSecrets:
+      - name: {{ ImagePullSecrets }}
+      nodeSelector:
+{% for NodeSelectorLabel in NodeSelectorLabels %}
+        {{NodeSelectorLabel.NodeSelectorLabelKey}}: {{NodeSelectorLabel.NodeSelectorLabelValue}}
+{% endfor %}
+      containers:
+      - name: {{ StatefulSetName }}                       
+        image: {{ ImagePath }}    
+        imagePullPolicy: Always
+        args: ["/spp/PushServer/bin/run.sh", "-b", "64", "-m", "{{ XMX }}", "-n", "{{ XMS }}", "-c", "rqmWithRMQM", "start"]
+        volumeMounts:
+        - name: rqm-pns-instance-conf
+          mountPath: /spp/PushServer/conf/rqmWithRMQM.conf
+          subPath: rqmWithRMQM.conf
+        - name: rqm-app-logs
+          mountPath: /spp/PushServer/logs/rqmWithRMQM.log
+          subPath: rqmWithRMQM.log
+      volumes:
+      - name: rqm-pns-instance-conf
+        configMap:
+          name: {{ ConfigMapName }}
+      - name: rqm-app-logs
+        emptyDir: {}

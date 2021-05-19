@@ -1,0 +1,4 @@
+8.10 modify vars[repicas,jvm,limits,request mem,ZkUrl]
+8.11 modify vars[images version,label,tmp dir]
+8.13 modfiy vars[replicas,xms,request,limit mem] 
+9.02 modify vars[replicas,xms,request,limit mem]
