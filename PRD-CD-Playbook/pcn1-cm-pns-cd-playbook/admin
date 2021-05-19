@@ -1,3 +1,0 @@
-[admin]
-pcn1adm001  ansible_host=10.5.16.14  ansible_user=spp_sys  ansible_ssh_port=2022 ansible_ssh_private_key_file=../../keys/key_pcn1adm.pem
-

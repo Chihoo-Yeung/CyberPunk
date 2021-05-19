@@ -1,8 +1,0 @@
----
-
-- hosts: "{{ host }}"
- #become: True
- #serial: 20
-  roles:
-    - cm-pns-cd-role
-
