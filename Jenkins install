@@ -1,0 +1,6 @@
+docker pull jenkins/jenkins:lts-centos7
+
+mkdir /root/Jenkins
+chmod -R 757 /root/Jenkins
+
+docker run -d -p 8080:8080 --name Jenkins --restart=always -v /root/Jenkins:/var/jenkins_home jenkins/jenkins:lts-centos7
